@@ -1,0 +1,288 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Predict Your Career | CareerSpark</title>
+    <link rel="icon" type="image/png" href="../logo-png.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/animate.css">
+    <link rel="stylesheet" href="../css/icomoon.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/magnific-popup.css">
+    <link rel="stylesheet" href="../css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="../css/flexslider.css">
+    <link rel="stylesheet" href="../css/style.css">
+
+    <!-- Modernizr JS -->
+    <script src="../js/modernizr-2.6.2.min.js"></script>
+
+    <!-- Markdown Parser -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <!-- Import Google Generative AI via Module -->
+
+</head>
+
+<body>
+
+    <div class="fh5co-loader"></div>
+
+    <div id="page">
+        <nav class="fh5co-nav" role="navigation">
+            <div class="top-menu">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-2">
+                            <div id="fh5co-logo">
+                                <a href="../index.html">
+                                    <img src="../logo-transparent-png.png" alt="Gem Logo" class="logo-img">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-xs-10 text-right menu-1">
+                            <ul>
+                                <li><a href="../pages/dashboard.html">Dashboard</a></li>
+                                <li><a href="../pages/courses.html">Courses</a></li>
+                                <li class="active"><a href="#">Predict Career</a></li>
+                                <li class="has-dropdown">
+                                    <a href="#" class="nav-username">User</a>
+                                    <ul class="dropdown">
+                                        <li><a href="#" onclick="logout()">Logout</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <aside id="fh5co-hero">
+            <div class="flexslider">
+                <ul class="slides">
+                    <li style="background-image: url(../images/img_bg_4.jpg);">
+                        <div class="overlay-gradient"></div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-8 col-md-offset-2 text-center slider-text">
+                                    <div class="slider-text-inner">
+                                        <h1 class="heading-section">AI Career Predictor</h1>
+                                        <h2>Powered by Google Gemini</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+        <div id="fh5co-contact" style="padding-top: 60px;">
+            <div class="container">
+
+                <!-- API Key Config (Hidden if already set) -->
+                <div class="row" id="apiKeyRow" style="display:none; margin-bottom: 20px;">
+                    <div class="col-md-12">
+                        <div class="alert alert-info">
+                            <h4>🔑 Setup Required</h4>
+                            <p>To use the AI features, please enter your Google Gemini API Key. It will be saved locally
+                                on your device.</p>
+                            <div class="input-group">
+                                <input type="password" id="geminiKeyInput" class="form-control"
+                                    placeholder="Enter Gemini API Key">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-primary" id="saveKeyBtn">Save Key</button>
+                                </span>
+                            </div>
+                            <small><a href="https://aistudio.google.com/app/apikey" target="_blank">Get a key from
+                                    Google AI Studio</a></small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!-- LEFT: INPUT FORM -->
+                    <div class="col-md-5 animate-box">
+                        <h3>Enter Your Details</h3>
+                        <form id="careerForm">
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <label for="education">Engineering Education</label>
+                                    <input type="text" id="education" class="form-control"
+                                        placeholder="e.g. Computer Science, Mechanical">
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <label for="skills">Skills</label>
+                                    <textarea id="skills" cols="30" rows="3" class="form-control"
+                                        placeholder="e.g. Python, CAD, Project Management"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <label for="internships">Internships / Experience</label>
+                                    <textarea id="internships" cols="30" rows="3" class="form-control"
+                                        placeholder="e.g. 3 months at XYZ Corp, Freelancing"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <label for="interests">Interests</label>
+                                    <textarea id="interests" cols="30" rows="3" class="form-control"
+                                        placeholder="e.g. AI, Robotics, Sustainable Energy"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="button" id="generateBtn" value="Generate Career Plan 🚀"
+                                    class="btn btn-primary">
+                            </div>
+
+                            <div id="loader" style="display:none;">
+                                <i class="fas fa-spinner fa-spin"></i> Generating your personalized plan...
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- RIGHT: OUTPUT -->
+                    <div class="col-md-7 animate-box">
+                        <h3>Your Personalized Career Plan</h3>
+                        <div id="resultContainer"
+                            style="background: #f4f4f4; padding: 20px; border-radius: 8px; min-height: 400px; border: 1px solid #ddd;">
+                            <p class="text-muted">Fill out the form and click "Generate" to see your AI-powered career
+                                roadmap here.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer id="fh5co-footer" role="contentinfo" style="background-image: url(../images/img_bg_4.jpg);">
+            <div class="overlay"></div>
+            <div class="container">
+                <div class="row copyright">
+                    <div class="col-md-12 text-center">
+                        <p>
+                            <small class="block">&copy; 2025 Career Spark. All Rights Reserved.</small>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Go to top -->
+    <div class="gototop js-top">
+        <a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
+    </div>
+
+
+
+    <!-- Firebase Compat SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+    <script src="../js/firebase-config.js"></script>
+    <script src="../js/firestore-sync.js"></script>
+
+    <!-- jQuery -->
+    <script src="../js/jquery.min.js"></script>
+
+    <!-- Bootstrap & plugins -->
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.easing.1.3.js"></script>
+    <script src="../js/jquery.waypoints.min.js"></script>
+    <script src="../js/jquery.stellar.min.js"></script>
+    <script src="../js/owl.carousel.min.js"></script>
+    <script src="../js/jquery.flexslider-min.js"></script>
+    <script src="../js/jquery.countTo.js"></script>
+    <script src="../js/jquery.magnific-popup.min.js"></script>
+    <script src="../js/magnific-popup-options.js"></script>
+    <script src="../js/simplyCountdown.js"></script>
+
+    <!-- TEMPLATE MAIN (ONLY ONCE) -->
+    <script src="../js/main.js"></script>
+
+
+    <!-- Logic -->
+    <script type="module" src="../js/predict-career.js"></script>
+
+    <style>
+        #fh5co-logo .logo-img {
+            max-height: 90px;
+            width: 200px;
+            display: block;
+        }
+
+        #fh5co-logo a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        /* Markdown Styles */
+        #resultContainer h1,
+        #resultContainer h2,
+        #resultContainer h3 {
+            margin-top: 20px;
+            color: #2c3e50;
+        }
+
+        #resultContainer ul {
+            padding-left: 20px;
+        }
+
+        #resultContainer li {
+            margin-bottom: 5px;
+        }
+
+        #resultContainer p {
+            margin-bottom: 15px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        #resultContainer strong {
+            color: #007bff;
+        }
+
+        /* Fix Mobile Dropdown Formatting */
+        .offcanvas-has-dropdown .dropdown {
+            display: block !important;
+            position: static !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            background: transparent !important;
+            box-shadow: none !important;
+            padding-left: 20px !important;
+        }
+
+        .offcanvas-has-dropdown .dropdown li {
+            display: block !important;
+            margin-bottom: 10px !important;
+        }
+
+        .offcanvas-has-dropdown .dropdown li a {
+            padding: 5px 0 !important;
+            color: rgba(0, 0, 0, 0.7) !important;
+        }
+    </style>
+
+</body>
+
+</html>
