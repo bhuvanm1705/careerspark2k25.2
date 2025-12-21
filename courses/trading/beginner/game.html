@@ -1,0 +1,834 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>The Trading Floor | Career Spark</title>
+  <link rel="icon" type="image/png" href="../../../logo-png.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&display=swap"
+    rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../../css/animate.css">
+  <link rel="stylesheet" href="../../../css/icomoon.css">
+  <link rel="stylesheet" href="../../../css/bootstrap.css">
+  <link rel="stylesheet" href="../../../css/magnific-popup.css">
+  <link rel="stylesheet" href="../../../css/owl.carousel.min.css">
+  <link rel="stylesheet" href="../../../css/owl.theme.default.min.css">
+  <link rel="stylesheet" href="../../../css/flexslider.css">
+  <link rel="stylesheet" href="../../../css/style.css">
+  <script src="../../../js/modernizr-2.6.2.min.js"></script>
+  <style>
+    /* Original Career Spark Styles */
+    #fh5co-logo .logo-img {
+      max-height: 90px;
+      width: 200px;
+      display: block;
+    }
+
+    #fh5co-logo a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    /* Game Specific Styles - Finance Theme */
+    body {
+      background: #0f2027;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* Game Container */
+    #fh5co-learning {
+      padding: 60px 0;
+      min-height: calc(100vh - 160px);
+    }
+
+    .game-screen {
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      padding: 4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      min-height: 800px;
+      max-width: 1200px;
+      margin: 0 auto;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Animating Ticker Background */
+    .game-screen::before {
+      content: 'BTC +2.3%  AAPL +1.2%  TSLA -0.5%  EURUSD +0.1%  GOLD +0.8%  BTC +2.3%  AAPL +1.2%';
+      position: absolute;
+      top: 20px;
+      left: 0;
+      right: 0;
+      white-space: nowrap;
+      color: rgba(255, 255, 255, 0.05);
+      font-family: 'Orbitron', monospace;
+      font-size: 2rem;
+      animation: ticker 15s linear infinite;
+      pointer-events: none;
+      /* Prevent blocking clicks */
+    }
+
+    @keyframes ticker {
+      0% {
+        transform: translateX(100%);
+      }
+
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+
+    /* Welcome Screen */
+    .welcome-screen {
+      display: block;
+    }
+
+    .game-title {
+      font-family: 'Orbitron', monospace;
+      font-size: 4.5rem;
+      font-weight: 900;
+      color: #c5a059;
+      /* Gold */
+      margin-bottom: 2rem;
+      text-shadow: 0 0 20px rgba(197, 160, 89, 0.4);
+      animation: glow 2s ease-in-out infinite alternate;
+      text-align: center;
+      line-height: 1.2;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 10px rgba(197, 160, 89, 0.2);
+      }
+
+      to {
+        text-shadow: 0 0 30px rgba(197, 160, 89, 0.6);
+      }
+    }
+
+    .game-subtitle {
+      font-size: 1.8rem;
+      color: #e0e0e0;
+      margin-bottom: 3rem;
+      text-align: center;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    /* Icons */
+    .treasure-icons {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin: 3rem 0;
+      flex-wrap: wrap;
+    }
+
+    .icon-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .icon-item:hover {
+      transform: translateY(-10px);
+    }
+
+    .icon-item i {
+      font-size: 5rem;
+      margin-bottom: 1.5rem;
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.1);
+      width: 120px;
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      border: 2px solid #c5a059;
+      box-shadow: 0 0 15px rgba(197, 160, 89, 0.3);
+    }
+
+    .icon-item span {
+      font-size: 1.4rem;
+      color: #c5a059;
+      font-weight: 600;
+      font-family: 'Orbitron', monospace;
+    }
+
+    /* Question Screen */
+    .question-screen {
+      display: none;
+    }
+
+    .question-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .question-icon {
+      font-size: 3rem;
+      color: #c5a059;
+    }
+
+    .question-title {
+      font-family: 'Orbitron', monospace;
+      font-size: 2.5rem;
+      color: #ffffff;
+      text-align: center;
+    }
+
+    .progress-bar {
+      background: rgba(255, 255, 255, 0.1);
+      height: 6px;
+      border-radius: 4px;
+      margin-bottom: 2rem;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      background: linear-gradient(90deg, #c5a059, #f1c40f);
+      height: 100%;
+      border-radius: 4px;
+      transition: width 0.5s ease;
+    }
+
+    .scenario-box {
+      background: rgba(0, 0, 0, 0.3);
+      border-left: 5px solid #c5a059;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      border-radius: 10px;
+      text-align: left;
+    }
+
+    .scenario-text {
+      font-size: 1.3rem;
+      line-height: 1.6;
+      color: #e0e0e0;
+      font-weight: 400;
+    }
+
+    .question-text {
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 2.5rem;
+      text-align: center;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Options */
+    .options-container {
+      display: grid;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .option-btn {
+      background: rgba(255, 255, 255, 0.05);
+      /* Glass effect */
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 1.5rem;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 1.2rem;
+      text-align: center;
+      color: #e0e0e0;
+      font-weight: 500;
+    }
+
+    .option-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: #c5a059;
+    }
+
+    .option-btn.selected {
+      background: rgba(197, 160, 89, 0.2);
+      border-color: #c5a059;
+      color: #fff;
+    }
+
+    .option-btn.correct {
+      background: rgba(40, 167, 69, 0.3);
+      border-color: #28a745;
+      color: #fff;
+    }
+
+    .option-btn.incorrect {
+      background: rgba(220, 53, 69, 0.3);
+      border-color: #dc3545;
+      color: #fff;
+    }
+
+    /* Audio */
+    .audio-controls {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .audio-btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: #fff;
+      transition: all 0.3s ease;
+    }
+
+    .audio-btn:hover,
+    .audio-btn.active {
+      background: #c5a059;
+      border-color: #c5a059;
+    }
+
+    /* Subtitles */
+    .subtitles {
+      position: fixed;
+      bottom: 100px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 10px;
+      display: none;
+      z-index: 100;
+      text-align: center;
+    }
+
+    /* Buttons */
+    .game-btn {
+      background: linear-gradient(135deg, #c5a059, #f1c40f);
+      color: #0f2027;
+      border: none;
+      padding: 1rem 3rem;
+      border-radius: 50px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(197, 160, 89, 0.3);
+    }
+
+    .game-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(197, 160, 89, 0.5);
+    }
+
+    .game-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* Score Screen */
+    .score-screen {
+      display: none;
+    }
+
+    .score-circle {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #c5a059, #f1c40f);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 2rem;
+      box-shadow: 0 0 30px rgba(197, 160, 89, 0.5);
+      color: #0f2027;
+      font-size: 3rem;
+      font-weight: 900;
+      font-family: 'Orbitron', monospace;
+    }
+
+    .result-message {
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 2rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .game-title {
+        font-size: 2.5rem;
+      }
+
+      .options-container {
+        grid-template-columns: 1fr;
+      }
+
+      .game-screen {
+        padding: 2rem 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="fh5co-loader"></div>
+  <div id="page">
+    <!-- ================= NAVBAR ================= -->
+    <nav class="fh5co-nav">
+      <div class="top-menu">
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-2">
+              <div id="fh5co-logo">
+                <a href="../../../index.html">
+                  <img src="../../../logo-transparent-png.png" class="logo-img">
+                </a>
+              </div>
+            </div>
+            <div class="col-xs-10 text-right menu-1">
+              <ul>
+                <li><a href="../../../index.html">Home</a></li>
+                <li><a href="../../../explore.html">Explore</a></li>
+                <li class="active"><a href="../../../course.html">Courses</a></li>
+                <li><a href="../../../pages/dashboard.html">Dashboard</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ================= GAME SECTION ================= -->
+    <div id="fh5co-learning">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="game-screen">
+              <!-- Audio Controls -->
+              <div class="audio-controls">
+                <div class="audio-btn" id="voiceToggle" title="Toggle Voice">
+                  <i class="fas fa-volume-up"></i>
+                </div>
+                <div class="audio-btn" id="subtitleToggle" title="Toggle Subtitles">
+                  <i class="fas fa-closed-captioning"></i>
+                </div>
+              </div>
+
+              <!-- Welcome Screen -->
+              <div class="welcome-screen" id="welcomeScreen">
+                <h1 class="game-title">The Trading Floor</h1>
+                <p class="game-subtitle">Steps onto the virtual trading floor. Analyze the markets, manage risk, and
+                  make profitable decisions to become a Top Trader!</p>
+
+                <div class="treasure-icons">
+                  <div class="icon-item" onclick="playWelcomeSound()">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Analyze</span>
+                  </div>
+                  <div class="icon-item" onclick="playWelcomeSound()">
+                    <i class="fas fa-balance-scale"></i>
+                    <span>Balance</span>
+                  </div>
+                  <div class="icon-item" onclick="playWelcomeSound()">
+                    <i class="fas fa-bullseye"></i>
+                    <span>Execute</span>
+                  </div>
+                </div>
+
+                <div class="scenario-box">
+                  <p class="scenario-text">
+                    <strong>Your Mission:</strong> You are a junior trader at a top Wall Street firm.
+                    Your mentor has given you 5 market scenarios.
+                    Analyze the data, identify the trends, and execute the correct trades to prove your worth.
+                  </p>
+                </div>
+
+                <button class="game-btn" onclick="startGame()">
+                  <i class="fas fa-play"></i> Enter the Market
+                </button>
+              </div>
+
+              <!-- Question Screen -->
+              <div class="question-screen" id="questionScreen">
+                <div class="question-header">
+                  <i class="question-icon" id="questionIcon"></i>
+                  <h2 class="question-title" id="questionTitle"></h2>
+                </div>
+
+                <div class="progress-bar">
+                  <div class="progress-fill" id="progressFill"></div>
+                </div>
+
+                <div class="scenario-box">
+                  <p class="scenario-text" id="scenarioText"></p>
+                </div>
+
+                <div class="question-text" id="questionText"></div>
+
+                <div class="options-container" id="optionsContainer"></div>
+
+                <div style="margin-top: 2rem;">
+                  <button class="game-btn" onclick="nextQuestion()" id="nextBtn" disabled>
+                    Next Trade <i class="fas fa-arrow-right"></i>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Score Screen -->
+              <div class="score-screen" id="scoreScreen">
+                <h2 class="game-title">Session Closed</h2>
+
+                <div class="score-circle">
+                  <div id="finalScore">0/5</div>
+                </div>
+
+                <div class="result-message" id="resultMessage"></div>
+
+                <div class="action-buttons" id="actionButtons" style="display:flex; justify-content:center; gap:1rem;">
+                  <!-- Buttons added dynamically -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Subtitles -->
+    <div class="subtitles" id="subtitles"></div>
+
+    <!-- FOOTER -->
+    <footer id="fh5co-footer" role="contentinfo" style="background:#0b1016; color:#fff;">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <h4 style="color:#c5a059;">Career Spark</h4>
+            <p style="color:#ccc;">Learn. Trade. Succeed.</p>
+          </div>
+          <div class="col-md-6 text-right">
+            <p style="color:#ccc; margin-top:30px;">&copy; 2025 Career Spark. All Rights Reserved.</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Firebase Compat SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+  <script src="../../../js/firebase-config.js"></script>
+  <script src="../../../js/firestore-sync.js"></script>
+
+  <!-- JS -->
+  <script src="../../../js/jquery.min.js"></script>
+  <script src="../../../js/bootstrap.min.js"></script>
+  <script src="../../../js/jquery.waypoints.min.js"></script>
+  <script src="../../../js/jquery.stellar.min.js"></script>
+  <script src="../../../js/owl.carousel.min.js"></script>
+  <script src="../../../js/jquery.flexslider-min.js"></script>
+  <script src="../../../js/jquery.magnific-popup.min.js"></script>
+  <script src="../../../js/main.js"></script>
+
+  <script>
+    // Game State
+    let currentQuestion = 0;
+    let score = 0;
+    let voiceEnabled = true;
+    let subtitlesEnabled = true;
+    let currentAudio = null;
+
+    // Game Data
+    const gameData = [
+      {
+        title: "Trade 1: Trend Identification",
+        icon: "fas fa-chart-line",
+        scenario: "You open your charts and see a stock making higher highs and higher lows consecutively for the past month. The overall direction is clearly upward.",
+        question: "What type of market trend is this?",
+        options: [
+          "Bear Market",
+          "Bull Market",
+          "Sideways Market",
+          "Correction"
+        ],
+        correct: 1,
+        voice: "You see higher highs and higher lows. What type of market trend is this?"
+      },
+      {
+        title: "Trade 2: Candlestick Analysis",
+        icon: "fas fa-chart-bar",
+        scenario: "A specific candlestick has a very small body and long wicks on both sides. This indicates indecision in the market, as neither buyers nor sellers are in control.",
+        question: "What is this candlestick pattern called?",
+        options: [
+          "Marubozu",
+          "Hammer",
+          "Doji",
+          "Engulfing"
+        ],
+        correct: 2,
+        voice: "A candle with a small body and long wicks indicates indecision. What is this pattern called?"
+      },
+      {
+        title: "Trade 3: Risk Management",
+        icon: "fas fa-shield-alt",
+        scenario: "You identify a buying opportunity. You have a $10,000 account and follow the strict rule of risking only 1% per trade.",
+        question: "What is the maximum amount you can lose on this trade?",
+        options: [
+          "$100",
+          "$500",
+          "$1,000",
+          "$10"
+        ],
+        correct: 0,
+        voice: "With a $10,000 account and 1% risk rule, what is the maximum amount you can lose?"
+      },
+      {
+        title: "Trade 4: Support Levels",
+        icon: "fas fa-layer-group",
+        scenario: "Price is dropping towards a level where it has historically stopped falling and bounced back up multiple times.",
+        question: "What is this price level called?",
+        options: [
+          "Resistance",
+          "Ceiling",
+          "Support",
+          "Breakout"
+        ],
+        correct: 2,
+        voice: "Price is dropping to a level where it usually bounces up. What is this level called?"
+      },
+      {
+        title: "Trade 5: Market Execution",
+        icon: "fas fa-bolt",
+        scenario: "News just broke and the market is moving fast. You want to enter the trade IMMEDIATELY at the current available price, regardless of the exact cost.",
+        question: "Which order type should you use?",
+        options: [
+          "Limit Order",
+          "Market Order",
+          "Stop Order",
+          "Take Profit"
+        ],
+        correct: 1,
+        voice: "To enter immediately at the current price, which order type should you use?"
+      }
+    ];
+
+    // Functions
+    function speak(text) {
+      // 1. Always handle subtitles first so they appear regardless of audio status
+      if (subtitlesEnabled) {
+        showSubtitles(text);
+      }
+
+      if (!voiceEnabled) return;
+
+      try {
+        if (currentAudio) speechSynthesis.cancel();
+      } catch (e) { console.warn("Audio cancel error", e); }
+
+      try {
+        currentAudio = new SpeechSynthesisUtterance(text);
+        currentAudio.rate = 0.9;
+        currentAudio.pitch = 1;
+
+        // Note: We do NOT auto-hide subtitles on end/error anymore to ensure they stays visible
+        // until the next text comes or user toggles them off.
+        currentAudio.onend = () => { currentAudio = null; };
+        currentAudio.onerror = (e) => {
+          console.warn("Speech synthesis error:", e);
+          currentAudio = null;
+        };
+
+        speechSynthesis.speak(currentAudio);
+      } catch (e) {
+        console.error("Speech synthesis execution error:", e);
+      }
+    }
+
+    function showSubtitles(text) {
+      const el = document.getElementById('subtitles');
+      el.textContent = text;
+      el.style.display = 'block';
+    }
+
+    function hideSubtitles() {
+      document.getElementById('subtitles').style.display = 'none';
+    }
+
+    function startGame() {
+      document.getElementById('welcomeScreen').style.display = 'none';
+      document.getElementById('questionScreen').style.display = 'block';
+      loadQuestion();
+    }
+
+    function loadQuestion() {
+      const data = gameData[currentQuestion];
+      document.getElementById('questionTitle').textContent = data.title;
+      document.getElementById('questionIcon').className = "question-icon " + data.icon;
+      document.getElementById('scenarioText').textContent = data.scenario;
+      document.getElementById('questionText').textContent = data.question;
+      // Progress
+      const progress = ((currentQuestion) / gameData.length) * 100;
+      document.getElementById('progressFill').style.width = progress + "%";
+
+
+      // Options
+      const container = document.getElementById('optionsContainer');
+      container.innerHTML = '';
+
+      data.options.forEach((opt, index) => {
+        const btn = document.createElement('div');
+        btn.className = 'option-btn';
+        btn.textContent = opt;
+        btn.onclick = () => selectOption(btn, index);
+        container.appendChild(btn);
+      });
+
+      document.getElementById('nextBtn').disabled = true;
+      speak(data.voice);
+    }
+
+    function selectOption(btn, index) {
+      if (document.getElementById('nextBtn').disabled === false) return; // Already answered
+
+      const correctIndex = gameData[currentQuestion].correct;
+      const allOpts = document.querySelectorAll('.option-btn');
+
+      // 1. Visual Updates FIRST
+      if (index === correctIndex) {
+        btn.classList.add('correct');
+        score++;
+      } else {
+        btn.classList.add('incorrect');
+        // Highlight correct one
+        allOpts[correctIndex].classList.add('correct');
+      }
+
+      // 2. Enable Button NEXT (Critical for flow)
+      document.getElementById('nextBtn').disabled = false;
+
+      // 3. Audio LAST (safe execution)
+      if (index === correctIndex) {
+        speak("Correct! Good trade.");
+      } else {
+        speak("Incorrect. The market proves you wrong.");
+      }
+    }
+
+    function nextQuestion() {
+      currentQuestion++;
+      if (currentQuestion < gameData.length) {
+        loadQuestion();
+      } else {
+        showScore();
+      }
+    }
+
+    function showScore() {
+      document.getElementById('questionScreen').style.display = 'none';
+      document.getElementById('scoreScreen').style.display = 'block';
+      document.getElementById('finalScore').textContent = score + "/" + gameData.length;
+
+      const msg = document.getElementById('resultMessage');
+      const btns = document.getElementById('actionButtons');
+      btns.innerHTML = '';
+
+      if (score >= 3) {
+        msg.textContent = "Profitable Session! You are a born trader.";
+        msg.style.color = "#28a745";
+
+        // Mark complete
+        const user = JSON.parse(localStorage.getItem("careerSparkUser"));
+        if (user) {
+          let course = user.enrolledCourses.find(c => c.course === "Trading");
+          if (!course) {
+            // Should exist if they came from learning, but safety check
+            course = { course: "Trading", beginner: { course: true, game: true, quiz: false } };
+            user.enrolledCourses.push(course);
+          }
+          course.beginner.game = true;
+          localStorage.setItem("careerSparkUser", JSON.stringify(user));
+          if (typeof saveUserProgress === 'function') saveUserProgress(user);
+        }
+
+        btns.innerHTML = `
+          <a href="quiz.html" class="game-btn">Take the Exam <i class="fas fa-file-alt"></i></a>
+          <a href="../../../course.html" class="game-btn game-btn-secondary">Exit Floor</a>
+        `;
+        speak("Profitable Session! You are a born trader.");
+      } else {
+        msg.textContent = "Account Blown. You need more practice.";
+        msg.style.color = "#dc3545";
+        btns.innerHTML = `
+          <button class="game-btn" onclick="location.reload()">Re-Trade</button>
+          <a href="../../../course.html" class="game-btn game-btn-secondary">Exit Floor</a>
+        `;
+        speak("Account Blown. You need more practice.");
+      }
+    }
+
+    function playWelcomeSound() {
+      speak("Welcome to the Trading Floor. Prepare yourself.");
+    }
+
+    // Toggles
+    document.getElementById('voiceToggle').onclick = function () {
+      voiceEnabled = !voiceEnabled;
+      this.classList.toggle('active');
+      if (!voiceEnabled && currentAudio) speechSynthesis.cancel();
+      this.innerHTML = voiceEnabled ? '<i class="fas fa-volume-up"></i>' : '<i class="fas fa-volume-mute"></i>';
+    };
+
+    document.getElementById('subtitleToggle').onclick = function () {
+      subtitlesEnabled = !subtitlesEnabled;
+      this.classList.toggle('active');
+      if (!subtitlesEnabled) hideSubtitles();
+      else if (currentAudio) showSubtitles(currentAudio.text);
+    }
+
+  </script>
+  <style>
+    /* Target the image inside the logo container */
+    #fh5co-logo .logo-img {
+      max-height: 90px;
+      /* Adjust this value to control the size of your logo */
+      width: 200px;
+      /* Maintains the image's aspect ratio */
+      display: block;
+      /* Removes extra space below the image */
+    }
+
+    /* Optional: Ensure the link container doesn't have conflicting styles */
+    #fh5co-logo a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+  </style>
+</body>
+
+
+</html>

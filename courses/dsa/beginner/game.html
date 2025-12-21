@@ -1,0 +1,694 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>DSA Algorithm Fortress | Career Spark</title>
+  <link rel="icon" type="image/png" href="../../../logo-png.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../../css/animate.css">
+  <link rel="stylesheet" href="../../../css/icomoon.css">
+  <link rel="stylesheet" href="../../../css/bootstrap.css">
+  <link rel="stylesheet" href="../../../css/magnific-popup.css">
+  <link rel="stylesheet" href="../../../css/owl.carousel.min.css">
+  <link rel="stylesheet" href="../../../css/owl.theme.default.min.css">
+  <link rel="stylesheet" href="../../../css/flexslider.css">
+  <link rel="stylesheet" href="../../../css/style.css">
+  <script src="../../../js/modernizr-2.6.2.min.js"></script>
+  <style>
+    /* DSA GAME THEME - Matrix/Cyberpunk */
+    :root {
+      --dsa-primary: #00ff41;
+      --dsa-bg: #0d0221;
+      --dsa-panel: #1a202c;
+    }
+
+    body {
+      background: var(--dsa-bg);
+      font-family: 'Fira Code', monospace;
+      min-height: 100vh;
+      color: #fff;
+    }
+
+    /* Logo Visibility Fix */
+    .logo-img {
+      filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.7));
+    }
+
+    /* Game Container */
+    #fh5co-learning {
+      padding: 60px 0;
+      min-height: calc(100vh - 160px);
+    }
+
+    .game-screen {
+      background: radial-gradient(circle at center, #1a202c 0%, #000000 100%);
+      border: 2px solid var(--dsa-primary);
+      box-shadow: 0 0 20px rgba(0, 255, 65, 0.2);
+      border-radius: 10px;
+      padding: 4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      min-height: 800px;
+      max-width: 1200px;
+      margin: 0 auto;
+      color: var(--dsa-primary);
+    }
+
+    .game-screen::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(0, 255, 65, 0.1) 1px, rgba(0, 255, 65, 0.1) 2px);
+      pointer-events: none;
+      opacity: 0.3;
+    }
+
+    /* Welcome Screen */
+    .game-title {
+      font-size: 4rem;
+      font-weight: 700;
+      color: var(--dsa-primary);
+      text-shadow: 0 0 10px var(--dsa-primary);
+      margin-bottom: 2rem;
+      font-family: 'Fira Code', monospace;
+    }
+
+    .game-subtitle {
+      font-size: 1.5rem;
+      color: #a0aec0;
+      margin-bottom: 3rem;
+    }
+
+    .treasure-icons {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin: 3rem 0;
+    }
+
+    .icon-item {
+      cursor: pointer;
+    }
+
+    .icon-item i {
+      font-size: 5rem;
+      color: var(--dsa-primary);
+      transition: all 0.3s ease;
+      text-shadow: 0 0 15px var(--dsa-primary);
+    }
+
+    .icon-item:hover i {
+      transform: scale(1.2);
+      color: white;
+    }
+
+    .icon-item span {
+      display: block;
+      margin-top: 10px;
+      color: #fff;
+    }
+
+    .scenario-box {
+      background: rgba(0, 255, 65, 0.1);
+      border-left: 5px solid var(--dsa-primary);
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      border-radius: 5px;
+      text-align: left;
+      color: #fff;
+      font-size: 1.3rem;
+    }
+
+    .game-btn {
+      background: transparent;
+      color: var(--dsa-primary);
+      border: 2px solid var(--dsa-primary);
+      padding: 1rem 3rem;
+      font-family: 'Fira Code', monospace;
+      font-weight: bold;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: 0.3s;
+      text-transform: uppercase;
+      margin: 5px;
+    }
+
+    .game-btn:hover {
+      background: var(--dsa-primary);
+      color: black;
+      box-shadow: 0 0 20px var(--dsa-primary);
+    }
+
+    .game-btn:disabled {
+      border-color: #555;
+      color: #555;
+      cursor: not-allowed;
+      box-shadow: none;
+      background: transparent;
+    }
+
+    /* Questions */
+    .question-title {
+      color: white;
+      text-shadow: none;
+      margin-bottom: 1rem;
+      font-size: 2.5rem;
+    }
+
+    .question-text {
+      font-size: 1.6rem;
+      color: var(--dsa-primary);
+      margin: 2rem 0;
+      font-weight: bold;
+    }
+
+    .options-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .option-btn {
+      display: block;
+      width: 100%;
+      background: rgba(26, 32, 44, 0.8);
+      border: 1px solid #4a5568;
+      color: #cbd5e0;
+      padding: 1.5rem;
+      text-align: left;
+      font-family: 'Fira Code', monospace;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .option-btn:hover {
+      border-color: var(--dsa-primary);
+      color: white;
+      background: rgba(0, 255, 65, 0.1);
+    }
+
+    .option-btn.selected {
+      background: rgba(0, 255, 65, 0.2);
+      border-color: var(--dsa-primary);
+      color: white;
+    }
+
+    .option-btn.correct {
+      background: rgba(0, 255, 65, 0.4);
+      border-color: var(--dsa-primary);
+      color: white;
+    }
+
+    .option-btn.incorrect {
+      background: rgba(255, 0, 0, 0.4);
+      border-color: red;
+      color: white;
+    }
+
+    /* Progress */
+    .progress-bar {
+      background: #2d3748;
+      height: 5px;
+      margin-bottom: 20px;
+    }
+
+    .progress-fill {
+      background: var(--dsa-primary);
+      box-shadow: 0 0 10px var(--dsa-primary);
+      height: 100%;
+      transition: width 0.3s;
+    }
+
+    /* Score */
+    .score-circle {
+      border: 4px solid var(--dsa-primary);
+      color: white;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 2rem;
+      font-size: 3.5rem;
+      box-shadow: 0 0 30px rgba(0, 255, 65, 0.3);
+    }
+
+    /* Audio Controls */
+    .audio-controls {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .audio-btn {
+      background: rgba(0, 255, 65, 0.1);
+      border: 1px solid var(--dsa-primary);
+      border-radius: 5px;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--dsa-primary);
+      transition: all 0.3s ease;
+    }
+
+    .audio-btn:hover,
+    .audio-btn.active {
+      background: var(--dsa-primary);
+      color: #000;
+    }
+
+    /* Subtitles */
+    .subtitles {
+      position: fixed;
+      bottom: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.9);
+      color: var(--dsa-primary);
+      padding: 1rem 2rem;
+      border: 1px solid var(--dsa-primary);
+      border-radius: 5px;
+      display: none;
+      z-index: 100;
+      text-align: center;
+      max-width: 80%;
+      font-family: 'Fira Code', monospace;
+      box-shadow: 0 0 10px rgba(0, 255, 65, 0.2);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="page">
+    <nav class="fh5co-nav">
+      <div class="top-menu">
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-2">
+              <div id="fh5co-logo">
+                <a href="../../../index.html">
+                  <img src="../../../logo-transparent-png.png" class="logo-img" style="width:200px;">
+                </a>
+              </div>
+            </div>
+            <div class="col-xs-10 text-right menu-1">
+              <ul>
+                <li><a href="../../../index.html">Home</a></li>
+                <li><a href="../../../explore.html">Explore</a></li>
+                <li class="active"><a href="../../../course.html">Courses</a></li>
+                <li><a href="../../../pages/dashboard.html">Dashboard</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div id="fh5co-learning">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="game-screen">
+
+              <!-- Audio Controls -->
+              <div class="audio-controls">
+                <div class="audio-btn" id="voiceToggle" title="Toggle Voice">
+                  <i class="fas fa-volume-up"></i>
+                </div>
+                <div class="audio-btn" id="subtitleToggle" title="Toggle Subtitles">
+                  <i class="fas fa-closed-captioning"></i>
+                </div>
+              </div>
+
+              <!-- Welcome Screen -->
+              <div class="welcome-screen" id="welcomeScreen">
+                <h1 class="game-title">The Algorithm Fortress</h1>
+                <p class="game-subtitle">Hack the mainframe by solving Data Structure puzzles.</p>
+
+                <div class="treasure-icons">
+                  <div class="icon-item" onclick="playWelcomeSound()">
+                    <i class="fas fa-server"></i>
+                    <span>Access</span>
+                  </div>
+                  <div class="icon-item" onclick="playWelcomeSound()">
+                    <i class="fas fa-code-branch"></i>
+                    <span>Logic</span>
+                  </div>
+                  <div class="icon-item" onclick="playWelcomeSound()">
+                    <i class="fas fa-lock-open"></i>
+                    <span>Decrypt</span>
+                  </div>
+                </div>
+
+                <div class="scenario-box">
+                  <p class="scenario-text">
+                    <strong>Mission:</strong> You are a specialized algorithm infiltrating a secure server.
+                    The firewall has 5 layers of encryption. Identify the correct Data Structure to bypass each layer.
+                    Failure will result in termination.
+                  </p>
+                </div>
+
+                <button class="game-btn" onclick="startGame()">
+                  <i class="fas fa-terminal"></i> Initialize Hack
+                </button>
+              </div>
+
+              <!-- Question Screen -->
+              <div class="question-screen" id="questionScreen" style="display:none;">
+                <div class="question-header">
+                  <i class="question-icon" id="questionIcon"
+                    style="font-size:4rem; margin-bottom:1rem; color:var(--dsa-primary);"></i>
+                  <h2 class="question-title" id="questionTitle"></h2>
+                </div>
+
+                <div class="progress-bar">
+                  <div class="progress-fill" id="progressFill" style="width:0%"></div>
+                </div>
+
+                <div class="scenario-box">
+                  <p class="scenario-text" id="scenarioText"></p>
+                </div>
+
+                <div class="question-text" id="questionText"></div>
+
+                <div class="options-container" id="optionsContainer"></div>
+
+                <div style="margin-top:2rem;">
+                  <button class="game-btn" onclick="nextQuestion()" id="nextBtn" disabled>
+                    Decrypt & Proceed &gt;
+                  </button>
+                </div>
+              </div>
+
+              <!-- Score Screen -->
+              <div class="score-screen" id="scoreScreen" style="display:none;">
+                <h2 class="game-title">System Hacked</h2>
+                <div class="score-circle">
+                  <div id="finalScore">0/5</div>
+                </div>
+                <div id="resultMessage" style="color:white; font-size:1.5rem; margin-bottom:2rem;"></div>
+
+                <div id="actionButtons"></div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Subtitles -->
+    <div class="subtitles" id="subtitles"></div>
+
+    <footer id="fh5co-footer" role="contentinfo"
+      style="background:var(--dsa-bg); color:#fff; border-top: 1px solid #333;">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <h4 style="color:var(--dsa-primary);">Career Spark</h4>
+            <p style="color:#666;">Code. Compile. Conquer.</p>
+          </div>
+          <div class="col-md-6 text-right">
+            <p style="color:#666; margin-top:30px;">&copy; 2025 Career Spark.</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="../../../js/jquery.min.js"></script>
+  <script src="../../../js/bootstrap.min.js"></script>
+  <script>
+    // Game State
+    let currentQuestion = 0;
+    let score = 0;
+    let voiceEnabled = true;
+    let subtitlesEnabled = true;
+    let currentAudio = null;
+
+    // DSA Game Data
+    const gameData = [
+      {
+        title: "Layer 1: The Gatekeeper",
+        icon: "fas fa-door-closed",
+        scenario: "The firewall demands instant verification. You need a data structure that allows checking for a user ID in O(1) constant time.",
+        question: "Which Data Structure offers O(1) average time complexity for search?",
+        options: [
+          "Array (Unsorted)",
+          "Linked List",
+          "Hash Map / Hash Table",
+          "Binary Search Tree"
+        ],
+        correct: 2,
+        voice: "The firewall demands instant verification. Which data structure allows checking for an ID in constant time?"
+      },
+      {
+        title: "Layer 2: The Data Stream",
+        icon: "fas fa-stream",
+        scenario: "Data packets are arriving in a specific order. The system creates a bottleneck, requiring you to process the FIRST packet that arrived before the later ones.",
+        question: "Which principle does a Queue follow?",
+        options: [
+          "LIFO (Last In First Out)",
+          "FIFO (First In First Out)",
+          "Random Access",
+          "Sorted Order"
+        ],
+        correct: 1,
+        voice: "Data packets must be processed in order. Which principle does a Queue follow?"
+      },
+      {
+        title: "Layer 3: The Recursive Trap",
+        icon: "fas fa-undo",
+        scenario: "You encounter a recursive function call stack. To backtrack effectively, you need to store the previous state and retrieve the most recent one first.",
+        question: "Which Data Structure is modeled by a Stack?",
+        options: [
+          "LIFO (Last In First Out)",
+          "FIFO (First In First Out)",
+          "Heap",
+          "Graph"
+        ],
+        correct: 0,
+        voice: "You need to backtrack recursively. Which data structure is modeled by a Stack?"
+      },
+      {
+        title: "Layer 4: The Sorted Vault",
+        icon: "fas fa-sort-amount-down",
+        scenario: "The vault keys are sorted numerically. To find the correct key quickly without checking every single one, you implement a specific search algorithm.",
+        question: "What is the time complexity of Binary Search on a sorted array?",
+        options: [
+          "O(1)",
+          "O(n)",
+          "O(log n)",
+          "O(n²)"
+        ],
+        correct: 2,
+        voice: "Using Binary Search on sorted keys. What is the time complexity?"
+      },
+      {
+        title: "Layer 5: The Network Core",
+        icon: "fas fa-project-diagram",
+        scenario: "You reached the core. It represents connections between servers (Nodes) and cables (Edges). You need to traverse this structure.",
+        question: "Which Data Structure best represents a network of connected devices?",
+        options: [
+          "Matrix",
+          "Graph",
+          "Queue",
+          "Stack"
+        ],
+        correct: 1,
+        voice: "Connecting servers and cables. Which data structure best represents a network?"
+      }
+    ];
+
+    // Functions
+    function speak(text) {
+      if (subtitlesEnabled) {
+        showSubtitles(text);
+      }
+
+      if (!voiceEnabled) return;
+
+      try {
+        if (currentAudio) speechSynthesis.cancel();
+      } catch (e) { console.warn("Audio cancel error", e); }
+
+      try {
+        currentAudio = new SpeechSynthesisUtterance(text);
+        currentAudio.rate = 1.0;
+        currentAudio.pitch = 0.8; // Lower pitch for 'hacker' vibe
+
+        currentAudio.onend = () => { currentAudio = null; };
+        currentAudio.onerror = (e) => {
+          console.warn("Speech synthesis error:", e);
+          currentAudio = null;
+        };
+
+        speechSynthesis.speak(currentAudio);
+      } catch (e) {
+        console.error("Speech synthesis execution error:", e);
+      }
+    }
+
+    function showSubtitles(text) {
+      const el = document.getElementById('subtitles');
+      el.textContent = text;
+      el.style.display = 'block';
+    }
+
+    function hideSubtitles() {
+      document.getElementById('subtitles').style.display = 'none';
+    }
+
+    function startGame() {
+      document.getElementById('welcomeScreen').style.display = 'none';
+      document.getElementById('questionScreen').style.display = 'block';
+      currentQuestion = 0;
+      score = 0;
+      loadQuestion();
+    }
+
+    function playWelcomeSound() {
+      speak("Initializing infiltration protocols. Prepare for encryption.");
+    }
+
+    function loadQuestion() {
+      const q = gameData[currentQuestion];
+      document.getElementById('progressFill').style.width = ((currentQuestion / 5) * 100) + '%';
+
+      document.getElementById('questionTitle').textContent = q.title;
+      document.getElementById('questionIcon').className = q.icon;
+      document.getElementById('scenarioText').textContent = q.scenario;
+      document.getElementById('questionText').textContent = q.question;
+
+      const container = document.getElementById('optionsContainer');
+      container.innerHTML = '';
+
+      q.options.forEach((opt, idx) => {
+        const btn = document.createElement('div');
+        btn.className = 'option-btn';
+        btn.textContent = `> ${opt}`;
+        btn.onclick = () => selectOption(btn, idx);
+        container.appendChild(btn);
+      });
+
+      document.getElementById('nextBtn').disabled = true;
+      speak(q.voice);
+    }
+
+    function selectOption(btn, idx) {
+      if (document.getElementById('nextBtn').disabled === false) return; // Already answered
+
+      const correctIndex = gameData[currentQuestion].correct;
+      const allOpts = document.querySelectorAll('.option-btn');
+
+      // 1. Visual Updates
+      if (idx === correctIndex) {
+        btn.classList.add('correct');
+        score++;
+      } else {
+        btn.classList.add('incorrect');
+        allOpts[correctIndex].classList.add('correct');
+      }
+
+      // 2. Enable Next
+      document.getElementById('nextBtn').disabled = false;
+
+      // 3. Audio
+      if (idx === correctIndex) {
+        speak("Access Code Accepted.");
+      } else {
+        speak("Encryption Mismatch. Alarm triggered.");
+      }
+    }
+
+    function nextQuestion() {
+      currentQuestion++;
+      if (currentQuestion < gameData.length) {
+        loadQuestion();
+      } else {
+        showScore();
+      }
+    }
+
+    function showScore() {
+      document.getElementById('questionScreen').style.display = 'none';
+      document.getElementById('scoreScreen').style.display = 'block';
+      document.getElementById('finalScore').textContent = score + "/5";
+
+      const msg = document.getElementById('resultMessage');
+      const btns = document.getElementById('actionButtons');
+
+      if (score >= 3) {
+        msg.textContent = "Access Granted. Mainframe Secured.";
+        msg.style.color = "#00ff41";
+
+        // Save Progress
+        const user = JSON.parse(localStorage.getItem("careerSparkUser"));
+        if (user) {
+          let course = user.enrolledCourses.find(c => c.course === "DSA");
+          if (!course) {
+            course = { course: "DSA", beginner: { course: true, game: true, quiz: false } };
+            user.enrolledCourses.push(course);
+          }
+          course.beginner.game = true;
+          localStorage.setItem("careerSparkUser", JSON.stringify(user));
+        }
+
+        btns.innerHTML = `
+            <button class="game-btn" onclick="window.location.href='quiz.html'">Proceed to Quiz</button>
+            <button class="game-btn" onclick="window.location.href='../../../course.html?course=DSA'">Exit System</button>
+          `;
+        speak("System compromised successfully. Access granted.");
+      } else {
+        msg.textContent = "Access Denied. Security Protocol Triggered.";
+        msg.style.color = "red";
+        btns.innerHTML = `
+            <button class="game-btn" onclick="startGame()">Retry Hack</button>
+            <button class="game-btn" onclick="window.location.href='learning.html'">Review Data</button>
+          `;
+        speak("System Alert. Intruder detected. Lockdown initiated.");
+      }
+    }
+
+    // Toggles
+    document.getElementById('voiceToggle').onclick = function () {
+      voiceEnabled = !voiceEnabled;
+      this.classList.toggle('active');
+      if (!voiceEnabled && currentAudio) speechSynthesis.cancel();
+      this.innerHTML = voiceEnabled ? '<i class="fas fa-volume-up"></i>' : '<i class="fas fa-volume-mute"></i>';
+    };
+
+    document.getElementById('subtitleToggle').onclick = function () {
+      subtitlesEnabled = !subtitlesEnabled;
+      this.classList.toggle('active');
+      if (!subtitlesEnabled) hideSubtitles();
+      else if (currentAudio) showSubtitles(currentAudio.text);
+    }
+  </script>
+</body>
+
+</html>

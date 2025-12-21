@@ -1,0 +1,1164 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>DSA Certification Quiz | Career Spark</title>
+  <link rel="icon" type="image/png" href="logo-png.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../../css/animate.css">
+  <link rel="stylesheet" href="../../../css/icomoon.css">
+  <link rel="stylesheet" href="../../../css/bootstrap.css">
+  <link rel="stylesheet" href="../../../css/magnific-popup.css">
+  <link rel="stylesheet" href="../../../css/owl.carousel.min.css">
+  <link rel="stylesheet" href="../../../css/owl.theme.default.min.css">
+  <link rel="stylesheet" href="../../../css/flexslider.css">
+  <link rel="stylesheet" href="../../../css/style.css">
+
+  <script src="../../../js/modernizr-2.6.2.min.js"></script>
+
+  <style>
+    /* DSA THEME */
+    :root {
+      --dsa-primary: #00ff41;
+      --dsa-bg: #0d0221;
+      --dsa-panel: #1a202c;
+    }
+
+    body {
+      background: var(--dsa-bg);
+      font-family: 'Fira Code', monospace;
+      color: #e2e8f0;
+    }
+
+    #fh5co-learning {
+      padding: 60px 0;
+      min-height: calc(100vh - 160px);
+      background:
+        linear-gradient(rgba(13, 2, 33, 0.9), rgba(13, 2, 33, 0.9)),
+        url('https://media.istockphoto.com/id/1154092754/photo/digital-background-of-falling-green-digits-matrix.jpg?s=612x612&w=0&k=20&c=L_YVfVwgw_kC1z6Cj-YyQfOa7h2v6Z8nLgI7_wZ9_w=');
+      background-size: cover;
+    }
+
+    .learning-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .learning-title {
+      color: var(--dsa-primary);
+      font-size: 3rem;
+      text-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
+    }
+
+    .quiz-container {
+      background: rgba(26, 32, 44, 0.95);
+      border: 1px solid var(--dsa-primary);
+      border-radius: 10px;
+      padding: 3rem;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .question-card {
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .question-card.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .question-counter {
+      color: #a0aec0;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    h3 {
+      color: white;
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      line-height: 1.4;
+    }
+
+    .options-grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .option-label {
+      display: block;
+      background: #2d3748;
+      border: 1px solid #4a5568;
+      padding: 1.5rem;
+      margin: 0;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .option-label:hover {
+      background: #4a5568;
+      border-color: var(--dsa-primary);
+    }
+
+    .option-input {
+      position: absolute;
+      opacity: 0;
+    }
+
+    .option-input:checked+.option-text {
+      color: var(--dsa-primary);
+      font-weight: bold;
+    }
+
+    .option-input:checked~.check-icon {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Highlight selected layout */
+    .option-label:has(.option-input:checked) {
+      border-color: var(--dsa-primary);
+      background: rgba(0, 255, 65, 0.1);
+    }
+
+    .check-icon {
+      position: absolute;
+      right: 1.5rem;
+      top: 50%;
+      transform: translateY(-50%) scale(0);
+      color: var(--dsa-primary);
+      opacity: 0;
+      transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .quiz-footer {
+      margin-top: 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #4a5568;
+      padding-top: 1.5rem;
+    }
+
+    .btn-next,
+    .btn-submit {
+      background: var(--dsa-primary);
+      color: #0d0221;
+      border: none;
+      padding: 0.8rem 2rem;
+      font-weight: bold;
+      font-family: 'Fira Code', monospace;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-next:hover,
+    .btn-submit:hover {
+      box-shadow: 0 0 15px var(--dsa-primary);
+      transform: translateY(-2px);
+    }
+
+    /* Results */
+    #results {
+      text-align: center;
+      display: none;
+    }
+
+    .score-display {
+      font-size: 5rem;
+      color: var(--dsa-primary);
+      font-weight: bold;
+      text-shadow: 0 0 20px rgba(0, 255, 65, 0.4);
+      margin: 2rem 0;
+    }
+
+    /* FORCE MATRIX THEME OVERRIDES */
+    body {
+      background-color: #0d0221 !important;
+      color: #e2e8f0 !important;
+    }
+
+    .quiz-container {
+      background: #1a202c !important;
+      border: 1px solid #00ff41 !important;
+    }
+
+    /* Fix Options Styling for Dark Mode */
+    .option-label {
+      background: #2d3748 !important;
+      /* Dark Grey */
+      border: 1px solid #4a5568 !important;
+      color: #e2e8f0 !important;
+    }
+
+    .option-label:hover {
+      border-color: #00ff41 !important;
+      background: #2f3e4e !important;
+    }
+
+    .option-text {
+      color: #fff !important;
+    }
+
+    h3,
+    .question-text {
+      color: #00ff41 !important;
+      /* Matrix Green Title */
+    }
+
+    .question-counter {
+      color: #a0aec0 !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="page">
+    <nav class="fh5co-nav">
+      <div class="top-menu">
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-2">
+              <div id="fh5co-logo">
+                <a href="../../../index.html">
+                  <img src="../../../logo-transparent-png.png" class="logo-img" style="width:200px;">
+                </a>
+              </div>
+            </div>
+            <div class="col-xs-10 text-right menu-1">
+              <ul>
+                <li><a href="../../../index.html">Home</a></li>
+                <li><a href="../../../explore.html">Explore</a></li>
+                <li class="active"><a href="../../../course.html">Courses</a></li>
+                <li><a href="../../../pages/dashboard.html">Dashboard</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div id="fh5co-learning">
+      <div class="container">
+        <span class="option-content">
+          <span class="option-letter">D</span>
+          <span class="option-text">decimal</span>
+        </span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Question 7 -->
+    <div class="quiz-question">
+      <div class="question-header">
+        <span class="question-number">07</span>
+        <h3 class="question-text">Which is an immutable data type?</h3>
+      </div>
+      <div class="options-grid">
+        <label class="option-card">
+          <input type="radio" name="q7" value="a">
+          <span class="option-content">
+            <span class="option-letter">A</span>
+            <span class="option-text">List</span>
+          </span>
+        </label>
+        <label class="option-card">
+          <input type="radio" name="q7" value="b">
+          <span class="option-content">
+            <span class="option-letter">B</span>
+            <span class="option-text">Dictionary</span>
+          </span>
+        </label>
+        <label class="option-card">
+          <input type="radio" name="q7" value="c">
+          <span class="option-content">
+            <span class="option-letter">C</span>
+            <span class="option-text">Tuple</span>
+          </span>
+        </label>
+        <label class="option-card">
+          <input type="radio" name="q7" value="d">
+          <span class="option-content">
+            <span class="option-letter">D</span>
+            <span class="option-text">Set</span>
+          </span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Question 8 -->
+    <div class="quiz-question">
+      <div class="question-header">
+        <span class="question-number">08</span>
+        <h3 class="question-text">Which keyword skips the current loop iteration?</h3>
+      </div>
+      <div class="options-grid">
+        <label class="option-card">
+          <input type="radio" name="q8" value="a">
+          <span class="option-content">
+            <span class="option-letter">A</span>
+            <span class="option-text">break</span>
+          </span>
+        </label>
+        <label class="option-card">
+          <input type="radio" name="q8" value="b">
+          <span class="option-content">
+            <span class="option-letter">B</span>
+            <span class="option-text">continue</span>
+          </span>
+        </label>
+        <label class="option-card">
+          <input type="radio" name="q8" value="c">
+          <span class="option-content">
+            <span class="option-letter">C</span>
+            <span class="option-text">pass</span>
+          </span>
+        </label>
+        <label class="option-card">
+          <input type="radio" name="q8" value="d">
+          <span class="option-content">
+            <span class="option-letter">D</span>
+            <span class="option-text">exit</span>
+          </span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Question 9 -->
+    <div class="quiz-question">
+      <div class="question-header">
+        <span class="question-number">09</span>
+        <h3 class="question-text">Which method adds an item to a list?</h3>
+      </div>
+      <div class="options-grid">
+        <label class="option-card">
+          <input type="radio" name="q9" value="a">
+          <span class="option-content">
+            <span class="option-letter">A</span>
+            <span class="option-text">add()</span>
+          </span>
+        </label>
+        <label class="option-card">
+          <input type="radio" name="q9" value="b">
+          <span class="option-content">
+            <span class="option-letter">B</span>
+            <span class="option-text">insert()</span>
+          </span>
+        </label>
+        <label class="option-card">
+          <input type="radio" name="q9" value="c">
+          <span class="option-content">
+            <span class="option-letter">C</span>
+            <span class="option-text">append()</span>
+          </span>
+        </label>
+        <label class="option-card">
+          <input type="radio" name="q9" value="d">
+          <span class="option-content">
+            <span class="option-letter">D</span>
+            <span class="option-text">push()</span>
+          </span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Question 10 -->
+    <div class="quiz-question">
+      <div class="question-header">
+        <span class="question-number">10</span>
+        <h3 class="question-text">What is the result of len("DSA")?</h3>
+      </div>
+      <div class="options-grid">
+        <label class="option-card">
+          <input type="radio" name="q10" value="a">
+          <span class="option-content">
+            <span class="option-letter">A</span>
+            <span class="option-text">5</span>
+          </span>
+        </label>
+        <label class="option-card">
+          <input type="radio" name="q10" value="b">
+          <span class="option-content">
+            <span class="option-letter">B</span>
+            <span class="option-text">6</span>
+          </span>
+        </label>
+        <label class="option-card">
+          <input type="radio" name="q10" value="c">
+          <span class="option-content">
+            <span class="option-letter">C</span>
+            <span class="option-text">7</span>
+          </span>
+        </label>
+        <label class="option-card">
+          <input type="radio" name="q10" value="d">
+          <span class="option-content">
+            <span class="option-letter">D</span>
+            <span class="option-text">4</span>
+          </span>
+        </label>
+      </div>
+    </div>
+
+    <div class="submit-section">
+      <button type="button" class="submit-btn" onclick="submitQuiz()">
+        <i class="fas fa-paper-plane"></i> Submit Quiz
+      </button>
+    </div>
+
+    </form>
+  </div>
+  <!-- SCORECARD ALERT -->
+  <div id="scoreCard" class="result-overlay hidden">
+    <div class="result-card">
+
+      <div class="result-header">
+        📊 Quiz Result
+      </div>
+
+      <div class="result-body">
+        <h3 id="finalScoreText"></h3>
+        <p class="score-subtext">Review your answers below</p>
+
+        <div id="answerBreakdown" class="answer-list"></div>
+      </div>
+
+      <div class="result-footer hidden" id="nextActions">
+        <a href="../certificate.html" class="btn btn-warning btn-lg" target="_blank">
+          🏆 Download Certificate
+        </a>
+        <a href="../../../course.html" class="btn btn-primary btn-lg">
+          📚 Go to Courses
+        </a>
+        <a href="../../../pages/dashboard.html" class="btn btn-success btn-lg">
+          📊 Go to Dashboard
+        </a>
+      </div>
+
+      <div class="result-footer hidden" id="retryAction">
+        <button class="btn btn-danger btn-lg" onclick="retryQuiz()">
+          🔁 Retry Quiz
+        </button>
+      </div>
+
+
+    </div>
+  </div>
+
+
+
+
+  <!-- FOOTER -->
+  <footer id="fh5co-footer" role="contentinfo" style="background:#1f2933; color:#fff;">
+    <div class="container">
+      <div class="row">
+
+        <!-- LEFT -->
+        <div class="col-md-6">
+          <h4 style="color:#fff;">Career Spark</h4>
+          <p style="color:#ccc;">
+            Learn. Evolve. Succeed.
+            Building industry-ready skills through structured learning.
+          </p>
+        </div>
+
+        <!-- RIGHT -->
+        <div class="col-md-6 text-right">
+          <p style="color:#ccc; margin-top:30px;">
+            &copy; 2025 Career Spark. All Rights Reserved.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+
+  </div>
+
+  <!-- JS -->
+  <script src="../../../js/jquery.min.js"></script>
+  <script src="../../../js/bootstrap.min.js"></script>
+  <script src="../../../js/jquery.waypoints.min.js"></script>
+  <script src="../../../js/jquery.stellar.min.js"></script>
+  <script src="../../../js/owl.carousel.min.js"></script>
+  <script src="../../../js/jquery.flexslider-min.js"></script>
+  <script src="../../../js/jquery.magnific-popup.min.js"></script>
+  <script src="../../../js/main.js"></script>
+  <script>
+    function markLessonComplete() {
+      const user = JSON.parse(localStorage.getItem("careerSparkUser"));
+      if (!user) return;
+
+      // Find or create course entry
+      let course = user.enrolledCourses.find(c => c.course === "DSA");
+      if (!course) {
+        course = {
+          course: "DSA",
+          beginner: { course: false, game: false, quiz: false },
+          intermediate: { course: false, game: false, quiz: false },
+          advanced: { course: false, game: false, quiz: false },
+          practiceCompleted: false,
+          certificateIssued: false
+        };
+        user.enrolledCourses.push(course);
+      }
+
+      // Mark beginner quiz as completed
+      course.beginner.quiz = true;
+      localStorage.setItem("careerSparkUser", JSON.stringify(user));
+
+      // Show modal
+      $('#completionModal').modal('show');
+    }
+  </script>
+
+
+  <style>
+    #fh5co-logo .logo-img {
+      max-height: 90px;
+      /* Adjust this value to control the size of your logo */
+      width: 200px;
+      /* Maintains the image's aspect ratio */
+      display: block;
+      /* Removes extra space below the image */
+    }
+
+    /* Optional: Ensure the link container doesn't have conflicting styles */
+    #fh5co-logo a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .learning-sidebar {
+      background: #f7f7f7;
+      padding: 20px;
+      border-radius: 8px;
+      position: sticky;
+      top: 110px;
+    }
+
+    .learning-sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .learning-sidebar ul li a {
+      display: block;
+      padding: 10px;
+      color: #333;
+      text-decoration: none;
+      border-radius: 6px;
+    }
+
+    .learning-sidebar ul li a:hover {
+      background: #5cb85c;
+      color: #fff;
+    }
+
+    .code-box {
+      background: #2d2d2d;
+      color: #f8f8f2;
+      padding: 15px;
+      border-radius: 6px;
+      margin: 15px 0;
+      font-family: Consolas, monospace;
+      font-size: 14px;
+      overflow-x: auto;
+    }
+
+    section {
+      scroll-margin-top: 120px;
+    }
+  </style>
+  <style>
+    /* Quiz Wrapper */
+    .quiz-wrapper {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      padding: 0;
+      animation: fadeIn 1s ease-in;
+      overflow: hidden;
+    }
+
+    /* Quiz Header */
+    .quiz-header {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    .quiz-icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      opacity: 0.9;
+    }
+
+    .quiz-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .quiz-subtitle {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      margin-bottom: 2rem;
+    }
+
+    .quiz-stats {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin-top: 2rem;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      display: block;
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+      opacity: 0.8;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Timer Animation */
+    #timeRemaining.warning {
+      color: #ff6b35 !important;
+      animation: pulse 1s infinite;
+    }
+
+    #timeRemaining.danger {
+      color: #e74c3c !important;
+      animation: pulse 0.5s infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.7;
+      }
+    }
+
+    /* Quiz Form */
+    .quiz-form {
+      padding: 2rem;
+    }
+
+    .quiz-question {
+      background: #f8f9fa;
+      border-radius: 15px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      border-left: 5px solid #667eea;
+      transition: all 0.3s ease;
+    }
+
+    .quiz-question:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .question-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .question-number {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin-right: 1rem;
+    }
+
+    .question-text {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #2c3e50;
+      margin: 0;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+
+    .option-card {
+      background: white;
+      border: 2px solid #e9ecef;
+      border-radius: 10px;
+      padding: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .option-card:hover {
+      border-color: #667eea;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+    }
+
+    .option-card input[type="radio"] {
+      display: none;
+    }
+
+    .option-card input[type="radio"]:checked+.option-content {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+    }
+
+    .option-content {
+      display: flex;
+      align-items: center;
+      padding: 0.5rem;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .option-letter {
+      background: #f8f9fa;
+      color: #667eea;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      margin-right: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .option-card input[type="radio"]:checked+.option-content .option-letter {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+    }
+
+    .option-text {
+      font-weight: 500;
+      font-size: 1rem;
+    }
+
+    /* Submit Button */
+    .submit-section {
+      text-align: center;
+      padding: 2rem;
+      background: #f8f9fa;
+      margin-top: 2rem;
+    }
+
+    .submit-btn {
+      background: linear-gradient(135deg, #28a745, #20c997);
+      color: white;
+      border: none;
+      padding: 1rem 3rem;
+      border-radius: 50px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(40px);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .quiz-stats {
+        gap: 1.5rem;
+      }
+
+      .options-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .quiz-title {
+        font-size: 2rem;
+      }
+
+      .question-header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .question-number {
+        margin-right: 0;
+        margin-bottom: 1rem;
+      }
+    }
+  </style>
+  <style>
+    /* Overlay */
+    .result-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+
+    /* Card */
+    .result-card {
+      background: #ffffff;
+      width: 90%;
+      max-width: 600px;
+      border-radius: 16px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
+      animation: popIn 0.6s ease;
+      overflow: hidden;
+    }
+
+    /* Header */
+    .result-header {
+      background: linear-gradient(135deg, #4CAF50, #2e7d32);
+      color: #fff;
+      padding: 20px;
+      font-size: 24px;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    /* Body */
+    .result-body {
+      padding: 25px;
+      text-align: center;
+    }
+
+    .result-body h3 {
+      font-size: 26px;
+      margin-bottom: 5px;
+    }
+
+    .score-subtext {
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    /* Answer list */
+    .answer-list {
+      text-align: left;
+      max-height: 260px;
+      overflow-y: auto;
+    }
+
+    .answer-list p {
+      padding: 8px 12px;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .answer-list .correct {
+      background: #e8f5e9;
+      color: #2e7d32;
+    }
+
+    .answer-list .wrong {
+      background: #ffebee;
+      color: #c62828;
+    }
+
+    .answer-list .skipped {
+      background: #fffde7;
+      color: #f9a825;
+    }
+
+    /* Footer */
+    .result-footer {
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      margin-top: 1rem;
+    }
+
+    /* Main Footer Alignment */
+    #fh5co-footer {
+      margin-top: 2rem;
+      padding: 2rem 0;
+    }
+
+    /* Animations */
+    @keyframes popIn {
+      from {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+
+
+  <script>
+    // Beginner Quiz Timer functionality
+    let timeLeft = 15 * 60; // 15 minutes in seconds
+    let timerInterval;
+
+    function startTimer() {
+      timerInterval = setInterval(() => {
+        timeLeft--;
+        updateTimerDisplay();
+
+        if (timeLeft <= 0) {
+          clearInterval(timerInterval);
+          submitQuiz();
+        }
+      }, 1000);
+    }
+
+    function updateTimerDisplay() {
+      const minutes = Math.floor(timeLeft / 60);
+      const seconds = timeLeft % 60;
+      const display = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+      const timerElement = document.getElementById('timeRemaining');
+
+      timerElement.textContent = display;
+
+      // Add warning classes
+      if (timeLeft <= 60) { // 1 minute
+        timerElement.className = 'stat-number danger';
+      } else if (timeLeft <= 300) { // 5 minutes
+        timerElement.className = 'stat-number warning';
+      }
+    }
+
+    function submitQuiz() {
+      clearInterval(timerInterval);
+
+      const answers = {
+        q1: "c", q2: "b", q3: "c", q4: "c", q5: "c",
+        q6: "c", q7: "c", q8: "b", q9: "c", q10: "b"
+      };
+
+      let score = 0;
+      let breakdownHTML = "";
+
+      Object.keys(answers).forEach((q, index) => {
+        const selected = document.querySelector(`input[name="${q}"]:checked`);
+        const qNum = index + 1;
+
+        if (!selected) {
+          breakdownHTML += `<p class="skipped">❔ Q${qNum} – Not Attempted</p>`;
+        } else if (selected.value === answers[q]) {
+          score++;
+          breakdownHTML += `<p class="correct">✔ Q${qNum} – Correct</p>`;
+        } else {
+          breakdownHTML += `<p class="wrong">✖ Q${qNum} – Wrong</p>`;
+        }
+      });
+
+      // Hide quiz, show result
+      document.getElementById("quizForm").style.display = "none";
+      document.getElementById("scoreCard").classList.remove("hidden");
+
+      document.getElementById("finalScoreText").innerHTML =
+        `You scored <strong>${score} / 10</strong>`;
+
+      document.getElementById("answerBreakdown").innerHTML = breakdownHTML;
+
+      // PASS CONDITION
+      if (score >= 6) {
+        // Mark quiz as completed in localStorage
+        const user = JSON.parse(localStorage.getItem("careerSparkUser"));
+        if (user) {
+          let course = user.enrolledCourses.find(c => c.course === "DSA");
+          if (!course) {
+            course = {
+              course: "DSA",
+              beginner: { course: false, game: false, quiz: false },
+              intermediate: { course: false, game: false, quiz: false },
+              advanced: { course: false, game: false, quiz: false },
+              practiceCompleted: false,
+              certificateIssued: false
+            };
+            user.enrolledCourses.push(course);
+          }
+          course.beginner.quiz = true;
+          localStorage.setItem("careerSparkUser", JSON.stringify(user));
+
+          // Generate certificate
+          generateCertificate(user);
+        }
+
+        setTimeout(() => {
+          document.getElementById("nextActions").classList.remove("hidden");
+        }, 5000);
+      }
+      // FAIL CONDITION
+      else {
+        setTimeout(() => {
+          document.getElementById("retryAction").classList.remove("hidden");
+        }, 3000);
+      }
+    }
+
+    // Start timer when page loads
+    document.addEventListener('DOMContentLoaded', function () {
+      startTimer();
+    });
+  </script>
+  <script>
+    function retryQuiz() {
+      // Hide scorecard
+      document.getElementById("scoreCard").classList.add("hidden");
+
+      // Reset actions
+      document.getElementById("nextActions").classList.add("hidden");
+      document.getElementById("retryAction").classList.add("hidden");
+
+      // Reset quiz form
+      document.getElementById("quizForm").reset();
+      document.getElementById("quizForm").style.display = "block";
+
+      // Scroll back to quiz
+      document.getElementById("beginner-quiz").scrollIntoView({ behavior: "smooth" });
+    }
+
+    function generateCertificate(user) {
+      // Generate unique certificate ID
+      const certificateId = 'CS-PY-' + Date.now().toString().slice(-6) + '-' + Math.random().toString(36).substr(2, 4).toUpperCase();
+
+      // Get completion date
+      const completionDate = new Date().toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+
+      // Create certificate object
+      const certificate = {
+        id: certificateId,
+        userId: user.email,
+        studentName: user.name || 'Student Name',
+        course: 'DSA Programming',
+        courseName: 'DSA Programming Course',
+        completionDate: completionDate,
+        issueDate: new Date().toISOString()
+      };
+
+      // Save certificate to localStorage
+      const certificates = JSON.parse(localStorage.getItem('careerSparkCertificates') || '[]');
+
+      // Check if certificate already exists for this user and course
+      const existingCert = certificates.find(cert =>
+        cert.userId === user.email && cert.course === 'DSA Programming'
+      );
+
+      if (!existingCert) {
+        certificates.push(certificate);
+        localStorage.setItem('careerSparkCertificates', JSON.stringify(certificates));
+
+        // Show success message
+        setTimeout(() => {
+          alert('🎉 Congratulations! Your DSA Programming certificate has been generated and is available in your certificates page.');
+        }, 2000);
+      }
+    }
+  </script>
+
+
+
+
+
+</body>
+
+</html>

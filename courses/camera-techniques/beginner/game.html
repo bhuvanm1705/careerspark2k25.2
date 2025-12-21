@@ -1,0 +1,828 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>The Darkroom Challenge | Career Spark</title>
+  <link rel="icon" type="image/png" href="../../../logo-png.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&display=swap"
+    rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../../css/animate.css">
+  <link rel="stylesheet" href="../../../css/icomoon.css">
+  <link rel="stylesheet" href="../../../css/bootstrap.css">
+  <link rel="stylesheet" href="../../../css/magnific-popup.css">
+  <link rel="stylesheet" href="../../../css/owl.carousel.min.css">
+  <link rel="stylesheet" href="../../../css/owl.theme.default.min.css">
+  <link rel="stylesheet" href="../../../css/flexslider.css">
+  <link rel="stylesheet" href="../../../css/style.css">
+  <script src="../../../js/modernizr-2.6.2.min.js"></script>
+  <style>
+    /* Target the image inside the logo container */
+    #fh5co-logo .logo-img {
+      max-height: 90px;
+      /* Adjust this value to control the size of your logo */
+      width: 200px;
+      /* Maintains the image's aspect ratio */
+      display: block;
+      /* Removes extra space below the image */
+    }
+
+    /* Optional: Ensure the link container doesn't have conflicting styles */
+    #fh5co-logo a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+  </style>
+  <style>
+    /* Original Career Spark Styles */
+    #fh5co-logo .logo-img {
+      max-height: 90px;
+      width: 200px;
+      display: block;
+    }
+
+    #fh5co-logo a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    /* Game Specific Styles - Darkroom Theme */
+    body {
+      background: #111;
+      min-height: 100vh;
+      position: relative;
+      color: #ddd;
+    }
+
+    /* Game Container */
+    #fh5co-learning {
+      padding: 60px 0;
+      min-height: calc(100vh - 160px);
+    }
+
+    .game-screen {
+      background: #1a1a1a;
+      border-radius: 5px;
+      box-shadow: 0 0 50px rgba(200, 0, 0, 0.1);
+      padding: 4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      min-height: 800px;
+      max-width: 1200px;
+      margin: 0 auto;
+      border: 1px solid #333;
+    }
+
+    /* Red Safety Light Effect */
+    .game-screen::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 50% 50%, transparent 0%, rgba(50, 0, 0, 0.2) 100%);
+      pointer-events: none;
+    }
+
+    /* Welcome Screen */
+    .welcome-screen {
+      display: block;
+    }
+
+    .game-title {
+      font-family: 'Roboto Slab', serif;
+      font-size: 4.5rem;
+      font-weight: 700;
+      color: #e74c3c;
+      /* Red */
+      margin-bottom: 2rem;
+      text-shadow: 0 0 10px rgba(231, 76, 60, 0.5);
+      animation: pulseLight 3s infinite alternate;
+      text-align: center;
+      line-height: 1.2;
+    }
+
+    @keyframes pulseLight {
+      from {
+        opacity: 0.8;
+        text-shadow: 0 0 10px rgba(231, 76, 60, 0.3);
+      }
+
+      to {
+        opacity: 1;
+        text-shadow: 0 0 30px rgba(231, 76, 60, 0.8);
+      }
+    }
+
+    .game-subtitle {
+      font-size: 1.8rem;
+      color: #999;
+      margin-bottom: 3rem;
+      text-align: center;
+      font-weight: 300;
+    }
+
+    /* Icons */
+    .treasure-icons {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin: 3rem 0;
+      flex-wrap: wrap;
+    }
+
+    .icon-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .icon-item:hover {
+      transform: scale(1.1);
+    }
+
+    .icon-item:hover i {
+      color: #fff;
+      border-color: #fff;
+    }
+
+    .icon-item i {
+      font-size: 4rem;
+      margin-bottom: 1.5rem;
+      color: #e74c3c;
+      width: 100px;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #e74c3c;
+      border-radius: 5px;
+      background: #000;
+    }
+
+    .icon-item span {
+      font-size: 1.2rem;
+      color: #e74c3c;
+      font-weight: 500;
+      letter-spacing: 1px;
+    }
+
+    /* Question Screen */
+    .question-screen {
+      display: none;
+    }
+
+    .question-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .question-icon {
+      font-size: 3rem;
+      color: #e74c3c;
+    }
+
+    .question-title {
+      font-family: 'Roboto Slab', serif;
+      font-size: 2.5rem;
+      color: #fff;
+      text-align: center;
+    }
+
+    .progress-bar {
+      background: #333;
+      height: 4px;
+      border-radius: 2px;
+      margin-bottom: 2rem;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      background: #e74c3c;
+      height: 100%;
+      border-radius: 2px;
+      transition: width 0.5s ease;
+    }
+
+    .scenario-box {
+      background: #222;
+      border-left: 3px solid #e74c3c;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      text-align: left;
+    }
+
+    .scenario-text {
+      font-size: 1.3rem;
+      line-height: 1.6;
+      color: #ccc;
+      font-weight: 400;
+    }
+
+    .question-text {
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 2.5rem;
+      text-align: center;
+    }
+
+    /* Options */
+    .options-container {
+      display: grid;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .option-btn {
+      background: #333;
+      border: 1px solid #444;
+      padding: 1.5rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 1.2rem;
+      text-align: center;
+      color: #ccc;
+    }
+
+    .option-btn:hover {
+      background: #444;
+      border-color: #e74c3c;
+      color: #fff;
+    }
+
+    .option-btn.selected {
+      background: #222;
+      border-color: #e74c3c;
+      color: #e74c3c;
+    }
+
+    .option-btn.correct {
+      background: #1e3d2f;
+      border-color: #2ecc71;
+      color: #2ecc71 !important;
+    }
+
+    .option-btn.incorrect {
+      background: #3d1e1e;
+      border-color: #e74c3c;
+      color: #e74c3c !important;
+    }
+
+    /* Audio */
+    .audio-controls {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      display: flex;
+      gap: 0.5rem;
+      z-index: 10;
+    }
+
+    .audio-btn {
+      background: #333;
+      border: 1px solid #555;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: #ccc;
+      transition: all 0.3s ease;
+    }
+
+    .audio-btn:hover,
+    .audio-btn.active {
+      background: #e74c3c;
+      border-color: #e74c3c;
+      color: #fff;
+    }
+
+    /* Subtitles */
+    .subtitles {
+      position: fixed;
+      bottom: 100px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.9);
+      color: #e74c3c;
+      padding: 1rem 2rem;
+      border-radius: 5px;
+      display: none;
+      z-index: 100;
+      text-align: center;
+      font-family: monospace;
+    }
+
+    /* Buttons */
+    .game-btn {
+      background: #e74c3c;
+      color: #fff;
+      border: none;
+      padding: 1rem 3rem;
+      border-radius: 3px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .game-btn:hover {
+      background: #c0392b;
+      transform: translateY(-2px);
+    }
+
+    .game-btn:disabled {
+      background: #555;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .game-btn-secondary {
+      background: #555;
+    }
+
+    .game-btn-secondary:hover {
+      background: #666;
+    }
+
+    /* Score Screen */
+    .score-screen {
+      display: none;
+    }
+
+    .score-circle {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 5px solid #e74c3c;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 2rem;
+      color: #e74c3c;
+      font-size: 3rem;
+      font-weight: 700;
+    }
+
+    .result-message {
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 2rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .game-title {
+        font-size: 2.5rem;
+      }
+
+      .options-container {
+        grid-template-columns: 1fr;
+      }
+
+      .game-screen {
+        padding: 2rem 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="fh5co-loader"></div>
+  <div id="page">
+    <!-- ================= NAVBAR ================= -->
+    <nav class="fh5co-nav">
+      <div class="top-menu">
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-2">
+              <div id="fh5co-logo">
+                <a href="../../../index.html">
+                  <img src="../../../logo-transparent-png.png" class="logo-img">
+                </a>
+              </div>
+            </div>
+            <div class="col-xs-10 text-right menu-1">
+              <ul>
+                <li><a href="../../../index.html">Home</a></li>
+                <li><a href="../../../explore.html">Explore</a></li>
+                <li class="active"><a href="../../../course.html">Courses</a></li>
+                <li><a href="../../../pages/dashboard.html">Dashboard</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ================= GAME SECTION ================= -->
+    <div id="fh5co-learning">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="game-screen">
+              <!-- Audio Controls -->
+              <div class="audio-controls">
+                <div class="audio-btn" id="voiceToggle" title="Toggle Voice">
+                  <i class="fas fa-volume-up"></i>
+                </div>
+                <div class="audio-btn" id="subtitleToggle" title="Toggle Subtitles">
+                  <i class="fas fa-closed-captioning"></i>
+                </div>
+              </div>
+
+              <!-- Welcome Screen -->
+              <div class="welcome-screen" id="welcomeScreen">
+                <h1 class="game-title">The Darkroom Challenge</h1>
+                <p class="game-subtitle">Step into the red light. Develop your eye for detail and master the technical
+                  art of photography.</p>
+
+                <div class="treasure-icons">
+                  <div class="icon-item" onclick="playWelcomeSound()">
+                    <i class="fas fa-eye"></i>
+                    <span>Focus</span>
+                  </div>
+                  <div class="icon-item" onclick="playWelcomeSound()">
+                    <i class="fas fa-sun"></i>
+                    <span>Expose</span>
+                  </div>
+                  <div class="icon-item" onclick="playWelcomeSound()">
+                    <i class="fas fa-crop-alt"></i>
+                    <span>Compose</span>
+                  </div>
+                </div>
+
+                <div class="scenario-box">
+                  <p class="scenario-text">
+                    <strong>Your Mission:</strong> You have 5 rolls of undeveloped film.
+                    Each roll presents a technical problem: blurry motion, dark images, or poor composition.
+                    Apply your knowledge to save the shots and produce a gallery-worthy portfolio.
+                  </p>
+                </div>
+
+                <button class="game-btn" onclick="startGame()">
+                  <i class="fas fa-camera"></i> Enter Darkroom
+                </button>
+              </div>
+
+              <!-- Question Screen -->
+              <div class="question-screen" id="questionScreen">
+                <div class="question-header">
+                  <i class="question-icon" id="questionIcon"></i>
+                  <h2 class="question-title" id="questionTitle"></h2>
+                </div>
+
+                <div class="progress-bar">
+                  <div class="progress-fill" id="progressFill"></div>
+                </div>
+
+                <div class="scenario-box">
+                  <p class="scenario-text" id="scenarioText"></p>
+                </div>
+
+                <div class="question-text" id="questionText"></div>
+
+                <div class="options-container" id="optionsContainer"></div>
+
+                <div style="margin-top: 2rem;">
+                  <button class="game-btn" onclick="nextQuestion()" id="nextBtn" disabled>
+                    Next Shot <i class="fas fa-arrow-right"></i>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Score Screen -->
+              <div class="score-screen" id="scoreScreen">
+                <h2 class="game-title">Development Complete</h2>
+
+                <div class="score-circle">
+                  <div id="finalScore">0/5</div>
+                </div>
+
+                <div class="result-message" id="resultMessage"></div>
+
+                <div class="action-buttons" id="actionButtons" style="display:flex; justify-content:center; gap:1rem;">
+                  <!-- Buttons added dynamically -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Subtitles -->
+    <div class="subtitles" id="subtitles"></div>
+
+    <!-- FOOTER -->
+    <footer id="fh5co-footer" role="contentinfo" style="background:#000; color:#fff; border-top: 1px solid #333;">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <h4 style="color:#e74c3c;">Career Spark</h4>
+            <p style="color:#666;">Capture. Create. Inspire.</p>
+          </div>
+          <div class="col-md-6 text-right">
+            <p style="color:#666; margin-top:30px;">&copy; 2025 Career Spark. All Rights Reserved.</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Firebase Compat SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+  <script src="../../../js/firebase-config.js"></script>
+  <script src="../../../js/firestore-sync.js"></script>
+
+  <!-- JS -->
+  <script src="../../../js/jquery.min.js"></script>
+  <script src="../../../js/bootstrap.min.js"></script>
+  <script src="../../../js/jquery.waypoints.min.js"></script>
+  <script src="../../../js/jquery.stellar.min.js"></script>
+  <script src="../../../js/owl.carousel.min.js"></script>
+  <script src="../../../js/jquery.flexslider-min.js"></script>
+  <script src="../../../js/jquery.magnific-popup.min.js"></script>
+  <script src="../../../js/main.js"></script>
+
+  <script>
+    // Game State
+    let currentQuestion = 0;
+    let score = 0;
+    let voiceEnabled = true;
+    let subtitlesEnabled = true;
+    let currentAudio = null;
+
+    // Game Data
+    const gameData = [
+      {
+        title: "Shot 1: The Waterfall",
+        icon: "fas fa-water",
+        scenario: "You are photographing a waterfall and want the water to look silky smooth, like a continuous veil.",
+        question: "Which Shutter Speed setting should you choose?",
+        options: [
+          "1/1000 sec (Fast)",
+          "1/500 sec (Fast)",
+          "1/60 sec (Medium)",
+          "2 seconds (Slow)"
+        ],
+        correct: 3,
+        voice: "To make water look silky smooth, which shutter speed setting should you choose?"
+      },
+      {
+        title: "Shot 2: The Portrait",
+        icon: "fas fa-user",
+        scenario: "You are taking a portrait and want the subject to be sharp but the background to be completely blurry (Bokeh).",
+        question: "Which Aperture (f-stop) is best?",
+        options: [
+          "f/1.8 (Wide Open)",
+          "f/8.0 (Medium)",
+          "f/16 (Small)",
+          "f/22 (Very Small)"
+        ],
+        correct: 0,
+        voice: "For a blurry background in a portrait, which aperture is best?"
+      },
+      {
+        title: "Shot 3: Night Sky",
+        icon: "fas fa-star",
+        scenario: "It's pitch black outside. You are photographing the stars. Your image is appearing too dark.",
+        question: "What ISO adjustment will make the image brighter?",
+        options: [
+          "Lower ISO to 100",
+          "Keep ISO at 400",
+          "Increase ISO to 3200",
+          "Close the lens cap"
+        ],
+        correct: 2,
+        voice: "Your night sky photo is too dark. What ISO adjustment will make it brighter?"
+      },
+      {
+        title: "Shot 4: Action Sport",
+        icon: "fas fa-running",
+        scenario: "A runner is sprinting past you. You want to freeze them in mid-air with zero motion blur.",
+        question: "What changes do you make?",
+        options: [
+          "Slow down Shutter Speed",
+          "Speed up Shutter Speed",
+          "Lower the ISO",
+          "Open the Aperture"
+        ],
+        correct: 1,
+        voice: "To freeze a sprinter in mid-air, what do you change?"
+      },
+      {
+        title: "Shot 5: Landscape",
+        icon: "fas fa-mountain",
+        scenario: "You are shooting a mountain range. You want the flowers in the foreground AND the mountains in the background to be sharp.",
+        question: "Which Depth of Field do you need?",
+        options: [
+          "Shallow Depth of Field (f/2.8)",
+          "Deep Depth of Field (f/16)",
+          "Fast Shutter Speed",
+          "High ISO"
+        ],
+        correct: 1,
+        voice: "For mountains and flowers to both be sharp, which depth of field do you need?"
+      }
+    ];
+
+    // Functions
+    function speak(text) {
+      if (subtitlesEnabled) {
+        showSubtitles(text);
+      }
+
+      if (!voiceEnabled) return;
+
+      try {
+        if (currentAudio) speechSynthesis.cancel();
+      } catch (e) { console.warn("Audio cancel error", e); }
+
+      try {
+        currentAudio = new SpeechSynthesisUtterance(text);
+        currentAudio.rate = 0.9;
+        currentAudio.pitch = 1;
+
+        currentAudio.onend = () => { currentAudio = null; };
+        currentAudio.onerror = (e) => {
+          console.warn("Speech synthesis error:", e);
+          currentAudio = null;
+        };
+
+        speechSynthesis.speak(currentAudio);
+      } catch (e) {
+        console.error("Speech synthesis execution error:", e);
+      }
+    }
+
+    function showSubtitles(text) {
+      const el = document.getElementById('subtitles');
+      el.textContent = text;
+      el.style.display = 'block';
+    }
+
+    function hideSubtitles() {
+      document.getElementById('subtitles').style.display = 'none';
+    }
+
+    function startGame() {
+      document.getElementById('welcomeScreen').style.display = 'none';
+      document.getElementById('questionScreen').style.display = 'block';
+      loadQuestion();
+    }
+
+    function loadQuestion() {
+      const data = gameData[currentQuestion];
+      document.getElementById('questionTitle').textContent = data.title;
+      document.getElementById('questionIcon').className = "question-icon " + data.icon;
+      document.getElementById('scenarioText').textContent = data.scenario;
+      document.getElementById('questionText').textContent = data.question;
+      // Progress
+      const progress = ((currentQuestion) / gameData.length) * 100;
+      document.getElementById('progressFill').style.width = progress + "%";
+
+      // Options
+      const container = document.getElementById('optionsContainer');
+      container.innerHTML = '';
+
+      data.options.forEach((opt, index) => {
+        const btn = document.createElement('div');
+        btn.className = 'option-btn';
+        btn.textContent = opt;
+        btn.onclick = () => selectOption(btn, index);
+        container.appendChild(btn);
+      });
+
+      document.getElementById('nextBtn').disabled = true;
+      speak(data.voice);
+    }
+
+    function selectOption(btn, index) {
+      if (document.getElementById('nextBtn').disabled === false) return; // Already answered
+
+      const correctIndex = gameData[currentQuestion].correct;
+      const allOpts = document.querySelectorAll('.option-btn');
+
+      // 1. Visual Updates FIRST
+      if (index === correctIndex) {
+        btn.classList.add('correct');
+        score++;
+      } else {
+        btn.classList.add('incorrect');
+        // Highlight correct one
+        allOpts[correctIndex].classList.add('correct');
+      }
+
+      // 2. Enable Button NEXT
+      document.getElementById('nextBtn').disabled = false;
+
+      // 3. Audio LAST
+      if (index === correctIndex) {
+        speak("Perfect shot! It's in focus.");
+      } else {
+        speak("Blurry image. Let's try to fix it next time.");
+      }
+    }
+
+    function nextQuestion() {
+      currentQuestion++;
+      if (currentQuestion < gameData.length) {
+        loadQuestion();
+      } else {
+        showScore();
+      }
+    }
+
+    function showScore() {
+      document.getElementById('questionScreen').style.display = 'none';
+      document.getElementById('scoreScreen').style.display = 'block';
+      document.getElementById('finalScore').textContent = score + "/" + gameData.length;
+
+      const msg = document.getElementById('resultMessage');
+      const btns = document.getElementById('actionButtons');
+      btns.innerHTML = '';
+
+      if (score >= 3) {
+        msg.textContent = "Portfolio Accepted! You have the eye.";
+        msg.style.color = "#2ecc71";
+
+        // Mark complete
+        const user = JSON.parse(localStorage.getItem("careerSparkUser"));
+        if (user) {
+          let course = user.enrolledCourses.find(c => c.course === "Camera Techniques");
+          if (!course) {
+            course = { course: "Camera Techniques", beginner: { course: true, game: true, quiz: false } };
+            user.enrolledCourses.push(course);
+          }
+          course.beginner.game = true;
+          localStorage.setItem("careerSparkUser", JSON.stringify(user));
+          if (typeof saveUserProgress === 'function') saveUserProgress(user);
+        }
+
+        btns.innerHTML = `
+          <a href="quiz.html" class="game-btn">Take the Exam <i class="fas fa-file-alt"></i></a>
+          <a href="../../../course.html" class="game-btn game-btn-secondary">Exit Darkroom</a>
+        `;
+        speak("Portfolio Accepted! You have the eye.");
+      } else {
+        msg.textContent = "Underexposed. You need more practice.";
+        msg.style.color = "#e74c3c";
+        btns.innerHTML = `
+          <button class="game-btn" onclick="location.reload()">Reload Film</button>
+          <a href="../../../course.html" class="game-btn game-btn-secondary">Exit Darkroom</a>
+        `;
+        speak("Underexposed. You need more practice.");
+      }
+    }
+
+    function playWelcomeSound() {
+      speak("Welcome to the Darkroom. Watch your exposure.");
+    }
+
+    // Toggles
+    document.getElementById('voiceToggle').onclick = function () {
+      voiceEnabled = !voiceEnabled;
+      this.classList.toggle('active');
+      if (!voiceEnabled && currentAudio) speechSynthesis.cancel();
+      this.innerHTML = voiceEnabled ? '<i class="fas fa-volume-up"></i>' : '<i class="fas fa-volume-mute"></i>';
+    };
+
+    document.getElementById('subtitleToggle').onclick = function () {
+      subtitlesEnabled = !subtitlesEnabled;
+      this.classList.toggle('active');
+      if (!subtitlesEnabled) hideSubtitles();
+      else if (currentAudio) showSubtitles(currentAudio.text);
+    }
+
+  </script>
+</body>
+
+</html>
